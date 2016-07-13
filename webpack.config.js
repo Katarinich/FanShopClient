@@ -11,6 +11,7 @@ var config = {
   devtool: 'cheap-source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
+    "./node_modules/font-awesome/scss/font-awesome.scss",
     "bootstrap-sass!./bootstrap-sass.config.js",
     './app/index'
   ],
