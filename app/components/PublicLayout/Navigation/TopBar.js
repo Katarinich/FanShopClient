@@ -1,17 +1,6 @@
 import React, { Component } from 'react'
 
 export default class TopBar extends Component {
-  componentDidMount() {
-    $('.dropdown').hover(
-      function() {
-        $(this).addClass('open')
-      },
-      function() {
-        $(this).removeClass('open')
-      }
-    )
-  }
-
   render() {
     return(
       <div className="topbar">
@@ -21,9 +10,9 @@ export default class TopBar extends Component {
               <ul className="list-inline">
                 <li><a href="#"><i className="fa fa-twitter"></i></a></li>
                 <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i className="fa fa-dribbble"></i></a></li>
-                <li><a href="#"><i className="fa fa-vimeo"></i></a></li>
-                <li><a href="#"><i className="fa fa-tumblr"></i></a></li>
+                <li><a href="#"><i className="fa fa-vk"></i></a></li>
+                <li><a href="#"><i className="fa fa-odnoklassniki"></i></a></li>
+                <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
               </ul>
             </div>
             <div className="col-md-6 col-xs-12">
@@ -50,25 +39,25 @@ export default class TopBar extends Component {
                 </li>
 
                 <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown disabled"><i className="fa fa-shopping-cart"></i>$0</a>
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-shopping-cart"></i>$0</a>
                   <ul className="dropdown-menu dropdown-menu-right">
                     <li>Item(s) in your cart</li>
                     <li>
-                      <a href="single-product.html">
+                      <a href="#">
                         <div className="media">
-                          <img className="media-left media-object" src="#" alt="cart-Image" />
+                          <img className="media-left media-object" src="/images/cart-item.png" alt="cart-Image" />
                           <div className="media-body">
-                            <h5 className="media-heading">INCIDIDUNT UT <br /><span>2 X $199</span></h5>
+                            <h5 className="media-heading">{'ITEM #1'} <br /><span>{'2 X $199'}</span></h5>
                           </div>
                         </div>
                       </a>
                     </li>
                     <li>
-                      <a href="single-product.html">
+                      <a href="#">
                         <div className="media">
-                          <img className="media-left media-object" src="#" alt="cart-Image" />
+                          <img className="media-left media-object" src="/images/cart-item.png" alt="cart-Image" />
                           <div className="media-body">
-                            <h5 className="media-heading">INCIDIDUNT UT <br /><span>2 X $199</span></h5>
+                            <h5 className="media-heading">{'ITEM #2'} <br /><span>{'2 X $199'}</span></h5>
                           </div>
                         </div>
                       </a>

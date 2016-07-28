@@ -12,6 +12,7 @@ var config = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
     "./node_modules/font-awesome/scss/font-awesome.scss",
+    "./node_modules/swiper/dist/css/swiper.min.css",
     "bootstrap-sass!./bootstrap-sass.config.js",
     './app/index'
   ],

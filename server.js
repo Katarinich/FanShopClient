@@ -15,6 +15,8 @@ app.use(webpackHotMiddleware(compiler));
 var staticPath = path.resolve(__dirname, 'static');
 
 app.use(express.static(staticPath));
+app.use(express.static(__dirname + '/node_modules/swiper/dist/js'))
+app.use(express.static(__dirname + '/node_modules/swiper/dist/css'))
 
 app.use(function(req, res) {
   res.sendFile(staticPath + '/index.html');

@@ -1,7 +1,7 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  mainSass: "./static/style.scss", // path to your main SASS file (optional)
+  mainSass: "./static/styles/style.scss", // path to your main SASS file (optional)
   verbose: false, // print out your custom files used
   debug: false, // print out the full generated scss file
   styleLoader: ExtractTextPlugin.extract("style-loader", "css-loader!sass"),
