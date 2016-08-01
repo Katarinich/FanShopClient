@@ -1,0 +1,105 @@
+.modal-dialog {
+  margin: 10px auto 0 auto;
+
+  .modal-content {
+    .modal-body {
+      padding: 15px 30px;
+
+      .form-group {
+        margin-bottom: 30px;
+
+        .form-control {
+          border-radius: 0;
+          background-color: #f0f0f0;
+          border: none;
+          height: 50px;
+          box-shadow: none;
+        }
+
+        form-control:focus {
+          box-shadow: none;
+        }
+
+        label {
+          font-size: 13px;
+        }
+      }
+
+      .checkbox {
+        margin: 0 0 30px 0;
+
+        label {
+          font-size: 13px;
+        }
+      }
+
+      .btn-primary {
+        border-radius: 0;
+        background-color: #47bac1;
+        border: none;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 0;
+        height: 50px;
+        line-height: 50px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-primary:hover {
+        opacity: .9;
+      }
+
+      .btn-link {
+        color: #47bac1;
+        text-transform: capitalize;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-link:hover {
+        text-decoration: none;
+        color: #4dc8cf;
+      }
+    }
+
+    .modal-header {
+      background-color: #47bac1;
+
+      .modal-title {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .close {
+        opacity: 1;
+        color: #ffffff;
+      }
+
+      .close:hover, .close:focus {
+        opacity: .6;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .modal-dialog {
+    width: 270px;
+  }
+}
+
+@media (min-width: 480px) {
+  .modal-dialog{
+    width: 430px;
+  }
+}

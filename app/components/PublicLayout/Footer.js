@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ShopItems from '../../../constants/shopItems'
+import ShopItems from '../../constants/shopItems'
 
 export default class Footer extends Component {
   renderShopItems() {

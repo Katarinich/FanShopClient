@@ -11,7 +11,7 @@ const FeaturedProducts = [
   { name: 'product #8', img: 'images/product.jpg', price: '$199' }
 ]
 
-export default class HomeContent extends Component {
+export default class Slider extends Component {
   componentDidMount() {
     var swiper = new Swiper('.featuredProductsSlider', {
       slidesPerView: 4,
@@ -62,24 +62,11 @@ export default class HomeContent extends Component {
 
   render() {
     return(
-      <section className="mainContent clearfix">
-        <div className="container">
-          <div className="row featuredProducts">
-            <div className="col-xs-12">
-              <div className="page-header">
-                <h4>Featured Products</h4>
-              </div>
-            </div>
-            <div className="col-xs-12">
-              <div className="swiper-container featuredProductsSlider">
-                <div className="swiper-wrapper">
-                { this.renderSlides() }
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="swiper-container featuredProductsSlider">
+        <div className="swiper-wrapper">
+          { this.renderSlides() }
         </div>
-      </section>
+      </div>
     )
   }
 }

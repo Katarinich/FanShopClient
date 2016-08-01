@@ -1,7 +1,30 @@
 import React, { Component } from 'react'
 
+import ModalWindow from '../Modal'
+import LoginForm from '../LoginForm'
+import RegistrationalForm from '../RegistrationalForm'
+
 export default class TopBar extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      showLoginModal: false,
+      showSignUpModal: false
+    }
+  }
+
+  handleLoginClick() {
+    this.setState({ showLoginModal: true })
+  }
+
+  handleSignUpClick() {
+    this.setState({ showSignUpModal: true })
+  }
+
   render() {
+    let close = () => this.setState({ showLoginModal: false, showSignUpModal: false })
+
     return(
       <div className="topbar">
         <div className="container">
@@ -20,9 +43,9 @@ export default class TopBar extends Component {
 
                 <li>
                   <span>
-                    <a data-toggle="modal" href='.login-modal'>Log in</a>
+                    <a href="#" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
                     <small>or</small>
-                    <a data-toggle="modal" href='#signup'>Create an account</a>
+                    <a href="javascript:void(0)" onClick={ this.handleSignUpClick.bind(this) } >Create an account</a>
                   </span>
                 </li>
 
@@ -74,6 +97,9 @@ export default class TopBar extends Component {
             </div>
           </div>
         </div>
+
+        <ModalWindow show={this.state.showLoginModal} onHide={ close } title="Log in"><LoginForm /></ModalWindow>
+        <ModalWindow show={this.state.showSignUpModal} onHide={ close } title="Sign Up"><RegistrationalForm /></ModalWindow>
       </div>
     )
   }

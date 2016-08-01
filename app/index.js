@@ -1,9 +1,17 @@
 import 'babel-core/polyfill'
 import React from 'react'
 import { render } from 'react-dom'
-import App from './containers/PublicPages/App'
+import { Provider } from 'react-redux'
+import { Router, browserHistory } from 'react-router'
+
+import configRoutes from './routes'
+
+const store = {}
+const routes = configRoutes(store)
 
 render(
-  <App/>,
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
   document.getElementById('root')
 )
