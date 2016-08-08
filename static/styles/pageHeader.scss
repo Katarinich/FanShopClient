@@ -1,0 +1,133 @@
+@media (max-width: 479px) {
+  .pageHeader .col-xs-6 {
+    width: 100%;
+    padding-top: 10px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader .col-xs-6 {
+    width: 50%;
+    padding-top: 0;
+  }
+}
+
+.pageHeader {
+  height: 70px;
+
+  .page-title h2 {
+    color: #797979;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  ol.breadcrumb {
+    background-color: transparent;
+    margin-bottom: 0;
+    padding: 0;
+
+    .active {
+      color: #252525;
+      text-transform: uppercase;
+    }
+
+    li a {
+      text-transform: uppercase;
+      color: #969696;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    li a:hover {
+      opacity: .9;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .pageHeader .page-title h2 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader .page-title h2 {
+    font-size: 12px;
+    line-height: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pageHeader .page-title h2 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .pageHeader .page-title h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 479px) {
+  .pageHeader ol.breadcrumb {
+    float: left!important;
+    min-height: 15px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader ol.breadcrumb {
+    float: right!important;
+    min-height: 70px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader ol.breadcrumb .active {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pageHeader ol.breadcrumb .active {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader ol.breadcrumb li+li::before {
+    padding: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .pageHeader ol.breadcrumb li+li::before {
+    padding: 0 5px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader ol.breadcrumb li a {
+    font-size: 9px;
+    line-height: 15px;
+  }
+}
+
+@media (min-width: 480px) {
+  .pageHeader ol.breadcrumb li a {
+    font-size: 9px;
+    line-height: 70px;
+  }
+}
+
+@media (min-width: 768px) {
+  .pageHeader ol.breadcrumb li a {
+    font-size: 12px;
+  }
+}

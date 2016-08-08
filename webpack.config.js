@@ -13,6 +13,7 @@ var config = {
     'webpack-hot-middleware/client?path=/__webpack_hmr&reload=true',
     "./node_modules/font-awesome/scss/font-awesome.scss",
     "./node_modules/swiper/dist/css/swiper.min.css",
+    "./node_modules/swiper/dist/js/swiper.min.js",
     "bootstrap-sass!./bootstrap-sass.config.js",
     './app/index'
   ],

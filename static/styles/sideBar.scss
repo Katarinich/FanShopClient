@@ -1,0 +1,94 @@
+.sideBar .panel {
+  border-radius: 0;
+  border: none;
+}
+
+.sideBar .panel .panel-heading {
+  background-color: #47bac1;
+  border-radius: 0;
+  padding: 0 15px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.sideBar .panel .panel-body {
+  border: 5px solid #f0f0f0;
+  border-top: none;
+}
+
+.navbar-side-collapse .side-nav li a {
+  font-size: 14px;
+  color: #252525;
+  line-height: 22px;
+  padding: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  display: block;
+}
+
+.navbar-side-collapse .side-nav li .collapseItem li a {
+  font-size: 13px!important;
+  color: #888888;
+  width: 100%;
+  display: block;
+  line-height: 20px;
+  padding: 7px 0 7px 14px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-side-collapse .side-nav li .collapseItem li a i {
+  right: auto;
+  left: 0;
+  line-height: 20px;
+  position: absolute;
+}
+
+.navbar-side-collapse .side-nav li .collapseItem li a:hover {
+  color: #47bac1;
+}
+
+.navbar-side-collapse {
+  padding: 0;
+  display: block;
+}
+
+.navbar-side-collapse .side-nav {
+  width: 100%;
+  margin: 0;
+}
+
+.navbar-side-collapse .side-nav li {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.navbar-side-collapse .side-nav li a {
+  background-color: transparent;
+  position: relative;
+}
+
+.navbar-side-collapse .side-nav li a i {
+  font-size: 12px;
+  line-height: 22px;
+  position: absolute;
+  right: 0;
+}
+
+.navbar-side-collapse .side-nav li a:hover {
+  color: #47bac1;
+}
+
+.navbar-side-collapse .side-nav li .collapseItem li {
+  margin-bottom: 0!important;
+}

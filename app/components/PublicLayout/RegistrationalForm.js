@@ -13,11 +13,11 @@ export default class RegistrationalForm extends Component {
           <input type="password" className="form-control" />
         </div>
         <div className="form-group">
-          <label for="">Confirm Password</label>
+          <label>Confirm Password</label>
           <input type="password" className="form-control" />
         </div>
         <button type="submit" className="btn btn-primary btn-block">Sign up</button>
-      </form>  
+      </form>
     )
   }
 }

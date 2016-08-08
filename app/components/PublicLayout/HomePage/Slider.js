@@ -38,7 +38,7 @@ export default class Slider extends Component {
   renderSlides() {
     return FeaturedProducts.map((product) => {
       return(
-        <div className="swiper-slide">
+        <div className="swiper-slide productBox">
           <div className="productImage clearfix">
             <img src={ product.img } />
             <div className="productMasking">

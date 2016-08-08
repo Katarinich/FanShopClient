@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router'
+
 import ShopItems from '../../../constants/shopItems'
 
 const AccountItems = [
@@ -14,7 +16,7 @@ export default class NavBar extends Component {
   renderShopItems() {
     return ShopItems.map((category, i) => {
       const categoryItems = category.items.map(item => {
-        return <li><a href={ item.to }>{ item.text }</a></li>
+        return <li><Link to={ item.to }> { item.text }</Link></li>
       })
 
       return (
@@ -38,7 +40,7 @@ export default class NavBar extends Component {
     return(
       <Navbar>
         <Navbar.Header>
-          <a className="navbar-brand" href="javascript:void(0)"><img src="images/logo.png" alt="" /></a>
+          <a className="navbar-brand" href="javascript:void(0)"><img src="/images/logo.png" alt="" /></a>
         <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
@@ -51,7 +53,7 @@ export default class NavBar extends Component {
                <ul className="dropdown-menu row">
                  { this.renderShopItems() }
                  <li className="col-sm-3 col-xs-12">
-                  <a href="#" className="menu-photo"><img src="images/menu-photo.png" alt="menu-img" /></a>
+                  <a href="#" className="menu-photo"><img src="/images/menu-photo.png" alt="menu-img" /></a>
                 </li>
               </ul>
             </li>
