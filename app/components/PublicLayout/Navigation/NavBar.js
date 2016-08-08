@@ -1,22 +1,26 @@
 import React, { Component } from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar, NavItem, MenuItem } from 'react-bootstrap'
 import { Link } from 'react-router'
+import activeComponent from 'react-router-active-component'
 
 import ShopItems from '../../../constants/shopItems'
+import { connectHistory } from '../../../utils'
+
+const NavItemLink = activeComponent('li')
 
 const AccountItems = [
-  { text: 'Dashboard', to: '#' },
-  { text: 'Profile', to: '#' },
-  { text: 'All Orders', to: '#' },
-  { text: 'Wishlist', to: '#' },
-  { text: 'Address', 'to': '#' }
+  { text: 'Dashboard', to: '/' },
+  { text: 'Profile', to: '/' },
+  { text: 'All Orders', to: '/' },
+  { text: 'Wishlist', to: '/' },
+  { text: 'Address', 'to': '/' }
 ]
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   renderShopItems() {
     return ShopItems.map((category, i) => {
       const categoryItems = category.items.map(item => {
-        return <li><Link to={ item.to }> { item.text }</Link></li>
+        return <NavItemLink to={ item.to }> { item.text }</NavItemLink>
       })
 
       return (
@@ -32,11 +36,19 @@ export default class NavBar extends Component {
 
   renderAccountItems() {
     return AccountItems.map((item, i) => {
-      return <li key={ i }><a href={ item.to }>{ item.text }</a></li>
+      return <NavItemLink to={ item.to }>{ item.text }</NavItemLink>
     })
   }
 
+  checkIfShopIsActive() {
+    const { context } = this.props
+    return ShopItems.some(item => item.items.some(subitem => context.router.isActive(subitem.to)))
+  }
+
   render() {
+    const shopsActive = this.checkIfShopIsActive()
+    const className = shopsActive ? "active" : null
+
     return(
       <Navbar>
         <Navbar.Header>
@@ -46,9 +58,9 @@ export default class NavBar extends Component {
         <Navbar.Collapse>
           <Nav pullRight>
 
-            <li className="active"><a href="javascript:void(0)">Home</a></li>
+            <NavItemLink to="/" onlyActiveOnIndex>Home</NavItemLink>
 
-            <li className="dropdown megaDropMenu">
+            <li className={`dropdown megaDropMenu ${className}`}>
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Shop</a>
                <ul className="dropdown-menu row">
                  { this.renderShopItems() }
@@ -70,3 +82,5 @@ export default class NavBar extends Component {
     )
   }
 }
+
+export default connectHistory(NavBar)
