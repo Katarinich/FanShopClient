@@ -55,6 +55,8 @@
     "react-router": "^2.6.1",
     "react-router-active-component": "^4.0.0",
     "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0",
     "swiper": "^3.3.1",
     "whatwg-fetch": "^1.0.0"
   }

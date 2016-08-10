@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Panel, Navbar, Nav, NavItem, Collapse } from 'react-bootstrap'
 
 import LightSection from '../../components/PublicLayout/LightSection'
 import SideBar from '../../components/PublicLayout/ShopPage/SideBar'
+import Loader from '../../components/Loader'
 import ProductsArea from '../../components/PublicLayout/ShopPage/ProductsArea'
+import { getProducts } from '../../modules/catalog'
 
 import ShopItems from '../../constants/shopItems'
-import Products from '../../constants/products'
 
-export default class ShopPage extends Component {
-  componentWillMount() {
+class ShopPage extends Component {
+  componentDidMount() {
+    this.props.getProducts()
+  }
+
+  render() {
     const { category, subcategory } = this.props.params
+    const { catalog } = this.props
+
     const pageTitle = ShopItems[category - 1].items[subcategory - 1].text
 
     const breadcrumbs = [
@@ -19,12 +27,6 @@ export default class ShopPage extends Component {
       { name: pageTitle }
     ]
 
-    this.setState({ pageTitle, breadcrumbs })
-  }
-
-  render() {
-    const { pageTitle, breadcrumbs } = this.state
-    
     return(
       <div>
         <LightSection title={ pageTitle } breadcrumbs={ breadcrumbs }/>
@@ -33,7 +35,8 @@ export default class ShopPage extends Component {
           <div className="container">
             <div className="row">
               <SideBar categories={ ShopItems } />
-              <ProductsArea products={ Products } pathname={ this.props.location.pathname }/>
+              { catalog.products && <ProductsArea products={ catalog.products } pathname={ this.props.location.pathname }/> }
+              <Loader visible={ catalog.isFetching } />
             </div>
           </div>
         </section>
@@ -41,3 +44,11 @@ export default class ShopPage extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    catalog: state.catalog
+  }
+}
+
+export default connect(mapStateToProps, { getProducts })(ShopPage)

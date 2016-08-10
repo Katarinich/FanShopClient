@@ -234,6 +234,7 @@ a:hover, a:focus {
 @import './pageHeader.scss';
 @import './sideBar.scss';
 @import './singleProduct.scss';
+@import './loader.scss';
 
 .productsContent {
   @include productBox;

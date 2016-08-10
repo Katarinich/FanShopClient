@@ -1,40 +1,48 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import LightSection from '../../components/PublicLayout/LightSection'
 import ProductInfo from '../../components/PublicLayout/SingleProductPage/ProductInfo'
+import Loader from '../../components/Loader'
+import { getProductInfo } from '../../modules/catalog'
 
 import Products from '../../constants/products'
 
-export default class SingleProductPage extends Component {
-  componentWillMount() {
-    const { productId } = this.props.params
-    const product = Products.find( x => x.id == productId)
+class SingleProductPage extends Component {
+  componentDidMount() {
+    this.props.getProductInfo()
+  }
 
-    const pageTitle = product.name
+  render() {
+    const { catalog } = this.props
+    const pageTitle = catalog.product ? catalog.product.name : null
 
     const breadcrumbs = [
       { name: 'Home', to: '/' },
       { name: 'Shop', to: '#' },
-      { name: pageTitle }
+      { name:  pageTitle}
     ]
-
-    this.setState({ pageTitle, breadcrumbs, product })
-  }
-
-  render() {
-    const { pageTitle, breadcrumbs, product } = this.state
 
     return(
       <div>
-        <LightSection title={ pageTitle } breadcrumbs={ breadcrumbs }/>
+        { catalog.product && <div><LightSection title={ pageTitle } breadcrumbs={ breadcrumbs }/>
 
         <section className="mainContent clearfix">
           <div className="container">
-            <ProductInfo product={ product }/>
+            <ProductInfo product={ catalog.product }/>
           </div>
-        </section>
+        </section> </div>}
 
+        <Loader visible={ catalog.isFetching } />
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    catalog: state.catalog
+  }
+}
+
+export default connect(mapStateToProps, { getProductInfo })(SingleProductPage)

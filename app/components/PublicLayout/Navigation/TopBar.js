@@ -31,11 +31,11 @@ export default class TopBar extends Component {
           <div className="row">
             <div className="col-md-6 hidden-sm hidden-xs">
               <ul className="list-inline">
-                <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i className="fa fa-vk"></i></a></li>
-                <li><a href="#"><i className="fa fa-odnoklassniki"></i></a></li>
-                <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
+                <li><a href="javascript:void(0)"><i className="fa fa-twitter"></i></a></li>
+                <li><a href="javascript:void(0)"><i className="fa fa-facebook"></i></a></li>
+                <li><a href="javascript:void(0)"><i className="fa fa-vk"></i></a></li>
+                <li><a href="javascript:void(0)"><i className="fa fa-odnoklassniki"></i></a></li>
+                <li><a href="javascript:void(0)"><i className="fa fa-google-plus"></i></a></li>
               </ul>
             </div>
             <div className="col-md-6 col-xs-12">
@@ -43,7 +43,7 @@ export default class TopBar extends Component {
 
                 <li>
                   <span>
-                    <a href="#" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
+                    <a href="javascript:void(0)" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
                     <small>or</small>
                     <a href="javascript:void(0)" onClick={ this.handleSignUpClick.bind(this) } >Create an account</a>
                   </span>

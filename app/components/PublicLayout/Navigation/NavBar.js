@@ -62,11 +62,12 @@ class NavBar extends Component {
 
             <li className={`dropdown megaDropMenu ${className}`}>
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Shop</a>
-               <ul className="dropdown-menu row">
-                 { this.renderShopItems() }
-                 <li className="col-sm-3 col-xs-12">
+              <ul className="dropdown-menu row">
+                <li className="col-sm-3 col-xs-12">
                   <a href="#" className="menu-photo"><img src="/images/menu-photo.png" alt="menu-img" /></a>
                 </li>
+                
+                { this.renderShopItems() }
               </ul>
             </li>
 

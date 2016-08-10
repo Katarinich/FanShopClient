@@ -1,0 +1,10 @@
+import { createConstants } from '../../utils'
+
+export default createConstants (
+ 'PRODUCTS_REQUEST',
+ 'PRODUCTS_REQUEST_FAILURE',
+ 'PRODUCTS_REQUEST_SUCCESS',
+ 'PRODUCT_INFO_REQUEST',
+ 'PRODUCT_INFO_REQUEST_FAILURE',
+ 'PRODUCT_INFO_REQUEST_SUCCESS',
+)

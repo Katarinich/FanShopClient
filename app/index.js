@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 
 import configRoutes from './routes'
+import configureStore from './store/configureStore'
 
-const store = {}
+const store = configureStore({})
 const routes = configRoutes(store)
 
 render(
