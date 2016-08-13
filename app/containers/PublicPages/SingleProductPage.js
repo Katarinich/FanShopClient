@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import LightSection from '../../components/PublicLayout/LightSection'
 import ProductInfo from '../../components/PublicLayout/SingleProductPage/ProductInfo'
+import ProductReviews from '../../components/PublicLayout/SingleProductPage/ProductReviews'
 import Loader from '../../components/Loader'
 import { getProductInfo } from '../../modules/catalog'
 
@@ -30,6 +31,7 @@ class SingleProductPage extends Component {
         <section className="mainContent clearfix">
           <div className="container">
             <ProductInfo product={ catalog.product }/>
+            <ProductReviews reviews={ catalog.product.reviews }/>
           </div>
         </section> </div>}
 

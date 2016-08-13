@@ -14,6 +14,8 @@ var config = {
     "./node_modules/font-awesome/scss/font-awesome.scss",
     "./node_modules/swiper/dist/css/swiper.min.css",
     "./node_modules/swiper/dist/js/swiper.min.js",
+    "./static/select_option1.css",
+    "./static/jquery.selectbox-0.1.3.min.js",
     "bootstrap-sass!./bootstrap-sass.config.js",
     './app/index'
   ],
@@ -51,7 +53,7 @@ var config = {
       { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/, include: __dirname },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass') },
-      { test: /\.(png|jpg)$/, loader: 'url?limit=25000' },
+      { test: /\.(png|jpg|gif)$/, loader: 'url?limit=25000' },
       { test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },

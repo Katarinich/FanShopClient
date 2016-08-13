@@ -109,6 +109,11 @@ a:hover, a:focus {
   z-index: 999;
 }
 
+.page-header {
+  margin: 0 0 17px 0;
+  border-bottom: 5px solid #e4e4e4;
+}
+
 .padding-top {
     padding-top: 57px;
 }
@@ -224,6 +229,43 @@ a:hover, a:focus {
 .swiper-pagination-bullet-active {
   color:#fff;
   background: #47bac1;
+}
+
+.reviewBox {
+  p {
+    line-height: 24px;
+    color: #797979;
+    margin-bottom: 37px;
+    width: 100%;
+    float: left;
+    margin: 20px 0 0 0;
+  }
+
+  .userName {
+    font-weight: bold;
+    float: left;
+    color: #131416;
+  }
+}
+
+.avatar {
+  float: left;
+  width: 9.6%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.thumbnail {
+  border: none;
+  border-radius: 0;
+  padding: 0;
+
+  img {
+    width: 100%;
+  }
 }
 
 @import './topbar.scss';
