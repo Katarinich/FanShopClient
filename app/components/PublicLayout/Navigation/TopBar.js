@@ -5,9 +5,11 @@ import LoginForm from '../LoginForm'
 import RegistrationalForm from '../RegistrationalForm'
 
 export default class TopBar extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
+    const { isAuthenticated } = this.props
+    console.log(isAuthenticated)
     this.state = {
       showLoginModal: false,
       showSignUpModal: false
@@ -22,8 +24,13 @@ export default class TopBar extends Component {
     this.setState({ showSignUpModal: true })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.isAuthenticated) this.setState({ showLoginModal: false, showSignUpModal: false })
+  }
+
   render() {
     let close = () => this.setState({ showLoginModal: false, showSignUpModal: false })
+    const { isAuthenticated, userName, onSignIn } = this.props
 
     return(
       <div className="topbar">
@@ -42,11 +49,12 @@ export default class TopBar extends Component {
               <ul className="list-inline pull-right">
 
                 <li>
-                  <span>
-                    <a href="javascript:void(0)" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
-                    <small>or</small>
-                    <a href="javascript:void(0)" onClick={ this.handleSignUpClick.bind(this) } >Create an account</a>
-                  </span>
+                  { isAuthenticated ? <span> Hello, { userName } </span>
+                     : <span>
+                         <a href="javascript:void(0)" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
+                         <small>or</small>
+                         <a href="javascript:void(0)" onClick={ this.handleSignUpClick.bind(this) } >Create an account</a>
+                       </span> }
                 </li>
 
                 <li className="dropdown searchBox">
@@ -98,8 +106,8 @@ export default class TopBar extends Component {
           </div>
         </div>
 
-        <ModalWindow show={this.state.showLoginModal} onHide={ close } title="Log in"><LoginForm /></ModalWindow>
-        <ModalWindow show={this.state.showSignUpModal} onHide={ close } title="Sign Up"><RegistrationalForm /></ModalWindow>
+        <ModalWindow show={this.state.showLoginModal} onHide={ close } title="Log in" ><LoginForm onSignIn={ onSignIn } /></ModalWindow>
+        <ModalWindow show={this.state.showSignUpModal} onHide={ close } title="Sign Up" ><RegistrationalForm /></ModalWindow>
       </div>
     )
   }

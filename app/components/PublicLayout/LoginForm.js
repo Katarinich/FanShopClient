@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 
 export default class LoginForm extends Component {
+  handleSubmit(e) {
+    e.preventDefault()
+
+    const email = $('#email').val()
+    const password = $('#password').val()
+
+    this.props.onSignIn(email, password)
+  }
+
   render() {
     return(
-      <form action="" method="POST" role="form">
+      <form onSubmit={ this.handleSubmit.bind(this) }>
         <div className="form-group">
           <label>Enter Email</label>
           <input type="email" className="form-control" id="email" />

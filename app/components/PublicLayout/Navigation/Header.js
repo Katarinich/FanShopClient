@@ -16,9 +16,11 @@ export default class Header extends Component {
   }
 
   render() {
+    const { isAuthenticated, userName, onSignIn } = this.props
+
     return(
       <div className="header clearfix">
-        <TopBar />
+        <TopBar isAuthenticated={ isAuthenticated } userName={ userName } onSignIn={ onSignIn } />
         <NavBar />
       </div>
     )

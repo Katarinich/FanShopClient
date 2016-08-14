@@ -44,7 +44,7 @@ function signInUserRequest() {
 export function signInUser(login, password) {
     return function(dispatch) {
         dispatch(signInUserRequest())
-        return fetch(`${baseUri}/auth`, {
+        return fetch(`${baseUri}/auth/signin`, {
                 method: 'post',
                 headers: defaultHeaders,
                 body: JSON.stringify({ login: login, password: password })
@@ -55,7 +55,7 @@ export function signInUser(login, password) {
                 try {
                   dispatch(signInUserSuccess(
                     {
-                      token: response
+                      token: response.token
                     }))
                 } catch(e) {
                     dispatch(signInUserFailure({
@@ -74,5 +74,5 @@ export function signInUser(login, password) {
 }
 
 function getSignInInitialData(tokenData, dispatch) {
-  dispatch(getUserCart(tokenData.userId))
+  //dispatch(getUserCart(tokenData.userId))
 }

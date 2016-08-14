@@ -23,7 +23,8 @@ export default createReducer(initialState, {
     },
 
     [SIGN_IN_USER_SUCCESS]: (state, payload) => {
-      const tokenData = getDecodedTokenData(payload.auth);
+      const tokenData = jwtDecode(payload.auth)
+      
         return {
             ...state,
             'isFetching': false,
