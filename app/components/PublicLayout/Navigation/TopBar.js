@@ -8,8 +8,6 @@ export default class TopBar extends Component {
   constructor(props) {
     super(props)
 
-    const { isAuthenticated } = this.props
-    console.log(isAuthenticated)
     this.state = {
       showLoginModal: false,
       showSignUpModal: false
@@ -30,7 +28,7 @@ export default class TopBar extends Component {
 
   render() {
     let close = () => this.setState({ showLoginModal: false, showSignUpModal: false })
-    const { isAuthenticated, userName, onSignIn } = this.props
+    const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading } = this.props
 
     return(
       <div className="topbar">
@@ -49,7 +47,7 @@ export default class TopBar extends Component {
               <ul className="list-inline pull-right">
 
                 <li>
-                  { isAuthenticated ? <span> Hello, { userName } </span>
+                  { isAuthenticated && !isProfileLoading ? <span> Hello, <a href="javascript:void(0)"> { userName } </a></span>
                      : <span>
                          <a href="javascript:void(0)" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
                          <small>or</small>
@@ -106,7 +104,7 @@ export default class TopBar extends Component {
           </div>
         </div>
 
-        <ModalWindow show={this.state.showLoginModal} onHide={ close } title="Log in" ><LoginForm onSignIn={ onSignIn } /></ModalWindow>
+        <ModalWindow show={this.state.showLoginModal} onHide={ close } title="Log in" isFetching={ isAuthenticating }><LoginForm onSignIn={ onSignIn } /></ModalWindow>
         <ModalWindow show={this.state.showSignUpModal} onHide={ close } title="Sign Up" ><RegistrationalForm /></ModalWindow>
       </div>
     )

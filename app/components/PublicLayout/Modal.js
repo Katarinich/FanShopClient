@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 
+import Loader from '../../components/Loader'
+
 export default class ModalWindow extends Component {
   render() {
-    const { title, show, onHide, children } = this.props
+    const { title, show, onHide, children, isFetching } = this.props
 
     return(
       <Modal show={ show } onHide={ onHide }>
@@ -12,6 +14,7 @@ export default class ModalWindow extends Component {
         </Modal.Header>
         <Modal.Body>
           { children }
+          <Loader visible={ isFetching } />
         </Modal.Body>
       </Modal>
     )

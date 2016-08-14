@@ -3,16 +3,16 @@ import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from './acti
 
 const initialState = {
   data: null,
-  isFetching: false
+  isProfileLoading: false
 }
 
 export default createReducer(initialState, {
   [USER_REQUEST]: (state, payload) => {
       return {
           ...state,
-          'isFetching': true
+          'isProfileLoading': true
       }
-  }
+  },
 
   [USER_REQUEST_SUCCESS]: (state, payload) => {
     const response = payload.response;
@@ -20,10 +20,10 @@ export default createReducer(initialState, {
     return {
         ...state,
         'data': {
-          'userId': response.userId,
+          'userId': response.id,
           'name': response.name
         },
-        'isFetching': false
+        'isProfileLoading': false
     }
   },
 
@@ -31,7 +31,7 @@ export default createReducer(initialState, {
       return {
           ...state,
           'data': null,
-          'isFetching': false
+          'isProfileLoading': false
       }
   }
 })

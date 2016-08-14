@@ -6,7 +6,7 @@ import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS } from
 const initialState = {
     token: null,
     userId: null,
-    isFetching: false,
+    isAuthenticating: false,
     isAuthenticated: false,
     status: null,
     statusText: null
@@ -16,7 +16,7 @@ export default createReducer(initialState, {
     [SIGN_IN_USER_REQUEST]: (state, payload) => {
         return {
             ...state,
-            isFetching: true,
+            isAuthenticating: true,
             status: null,
             statusText: null
         }
@@ -24,10 +24,10 @@ export default createReducer(initialState, {
 
     [SIGN_IN_USER_SUCCESS]: (state, payload) => {
       const tokenData = jwtDecode(payload.auth)
-      
+
         return {
             ...state,
-            'isFetching': false,
+            'isAuthenticating': false,
             'isAuthenticated': true,
             'token': payload.auth,
             'userId': tokenData.userId,
@@ -39,7 +39,7 @@ export default createReducer(initialState, {
     [SIGN_IN_USER_FAILURE]: (state, payload) => {
         return {
             ...state,
-            'isFetching': false,
+            'isAuthenticating': false,
             'isAuthenticated': false,
             'token': null,
             'userId': null,

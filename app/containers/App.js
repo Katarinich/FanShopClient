@@ -11,7 +11,13 @@ class App extends Component {
   render() {
     return(
       <div>
-        <Header isAuthenticated={ this.props.isAuthenticated } userName={ this.props.user ? this.props.user.name : null } onSignIn={ this.props.signInUser } />
+        <Header
+          isAuthenticated={ this.props.isAuthenticated }
+          userName={ this.props.user.data ? this.props.user.data.name : null }
+          onSignIn={ this.props.signInUser }
+          isAuthenticating={ this.props.isAuthenticating }
+          isProfileLoading={ this.props.isProfileLoading } />
+
           { this.props.children }
         <Footer />
         <Copyright />
@@ -25,6 +31,8 @@ function mapStateToProps(state) {
 
   return {
     isAuthenticated: auth.isAuthenticated ? auth.isAuthenticated : false,
+    isAuthenticating: auth.isAuthenticating ? auth.isAuthenticating : false,
+    isProfileLoading: state.user.isProfileLoading ? state.user.isProfileLoading : false,
     user: state.user
   }
 }

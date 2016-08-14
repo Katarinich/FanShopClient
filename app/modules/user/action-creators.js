@@ -26,7 +26,7 @@ export function getUserRequest(userId) {
     return function(dispatch, getState) {
       dispatch(userRequest())
 
-    return authenticatedFetch(`/${userId}`, 'GET', dispatch, getState)
+    return authenticatedFetch(`/user/${userId}`, 'GET', dispatch, getState)
           .then(checkHttpStatus)
           .then(parseResponseJSON)
           .then(response => {

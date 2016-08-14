@@ -2,6 +2,7 @@ import jwtDecode from 'jwt-decode'
 
 import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS } from './action-types'
 import { checkHttpStatus, parseResponseJSON } from '../../utils'
+import { getUserRequest } from '../user'
 
 const baseUri = 'http://private-517bbf-shop31.apiary-mock.com'
 
@@ -74,5 +75,5 @@ export function signInUser(login, password) {
 }
 
 function getSignInInitialData(tokenData, dispatch) {
-  //dispatch(getUserCart(tokenData.userId))
+  dispatch(getUserRequest(tokenData.userId))
 }

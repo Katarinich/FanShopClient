@@ -16,11 +16,16 @@ export default class Header extends Component {
   }
 
   render() {
-    const { isAuthenticated, userName, onSignIn } = this.props
+    const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading } = this.props
 
     return(
       <div className="header clearfix">
-        <TopBar isAuthenticated={ isAuthenticated } userName={ userName } onSignIn={ onSignIn } />
+        <TopBar
+          isAuthenticated={ isAuthenticated }
+          userName={ userName }
+          onSignIn={ onSignIn }
+          isAuthenticating={ isAuthenticating }
+          isProfileLoading={ isProfileLoading } />
         <NavBar />
       </div>
     )
