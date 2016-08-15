@@ -33,7 +33,8 @@ function mapStateToProps(state) {
     isAuthenticated: auth.isAuthenticated ? auth.isAuthenticated : false,
     isAuthenticating: auth.isAuthenticating ? auth.isAuthenticating : false,
     isProfileLoading: state.user.isProfileLoading ? state.user.isProfileLoading : false,
-    user: state.user
+    user: state.user,
+    cart: state.cart
   }
 }
 

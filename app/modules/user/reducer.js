@@ -1,5 +1,5 @@
 import { createReducer } from '../../utils'
-import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from './action-types'
+import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS, CLEAR_USER } from './action-types'
 
 const initialState = {
   data: null,
@@ -32,6 +32,13 @@ export default createReducer(initialState, {
           ...state,
           'data': null,
           'isProfileLoading': false
+      }
+  },
+
+  [CLEAR_USER]: (state, payload) => {
+      return {
+          ...state,
+          'data': null
       }
   }
 })

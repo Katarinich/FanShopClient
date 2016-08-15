@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode'
 
 import { createReducer } from '../../utils'
-import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS } from './action-types'
+import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS, SYNC_AUTH, RESTORE_SIGNED_IN_USER_REQUEST, SIGN_OUT_USER } from './action-types'
 
 const initialState = {
     token: null,
@@ -13,6 +13,15 @@ const initialState = {
 }
 
 export default createReducer(initialState, {
+  [RESTORE_SIGNED_IN_USER_REQUEST]: (state, payload) => {
+      return {
+          ...state,
+          isAuthenticating: false,
+          status: null,
+          statusText: null
+      };
+    },
+
     [SIGN_IN_USER_REQUEST]: (state, payload) => {
         return {
             ...state,
@@ -46,5 +55,25 @@ export default createReducer(initialState, {
             'status': payload.status,
             'statusText': payload.statusText
         }
-    }
+    },
+
+    [SIGN_OUT_USER]: (state, payload) => {
+        return {
+            ...state,
+            'isAuthenticated': false,
+            'token': null,
+            'userId': null,
+            'status': null,
+            'statusText': null
+        }
+    },
+
+    [SYNC_AUTH]: (state, payload) => {
+      const auth = payload.auth || {}
+
+      return {
+          ...state,
+          ...auth
+      }
+  }
 })

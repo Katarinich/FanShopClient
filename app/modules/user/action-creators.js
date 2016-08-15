@@ -1,5 +1,5 @@
 import { checkHttpStatus, parseResponseJSON, authenticatedFetch } from '../../utils'
-import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS } from './action-types'
+import { USER_REQUEST, USER_REQUEST_FAILURE, USER_REQUEST_SUCCESS, CLEAR_USER } from './action-types'
 
 export function userRequest() {
   return {
@@ -45,4 +45,10 @@ export function getUserRequest(userId) {
             dispatch(userRequestFailure(error))
           })
     }
+}
+
+export function clearUser() {
+  return {
+    type: CLEAR_USER
+  }
 }

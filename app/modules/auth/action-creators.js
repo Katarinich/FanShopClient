@@ -1,14 +1,42 @@
 import jwtDecode from 'jwt-decode'
+import moment from 'moment'
 
-import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS } from './action-types'
+import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS, SYNC_AUTH, RESTORE_SIGNED_IN_USER_REQUEST, SIGN_OUT_USER } from './action-types'
 import { checkHttpStatus, parseResponseJSON } from '../../utils'
-import { getUserRequest } from '../user'
+import { getUserRequest, clearUser } from '../user'
 
 const baseUri = 'http://private-517bbf-shop31.apiary-mock.com'
 
 const defaultHeaders = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
+}
+
+export function restoreSignedInUser() {
+    return (dispatch, getState) => {
+        dispatch({
+            type: RESTORE_SIGNED_IN_USER_REQUEST
+        })
+        let auth = getState().auth
+
+        if (!auth.token) {
+          return dispatch(signOut())
+        }
+
+        let tokenData = null
+
+        try {
+          tokenData = jwtDecode(auth.token)
+        } catch (e) {
+          return dispatch(signOut())
+        }
+
+        if(moment.unix(tokenData.expiryDate).isBefore(moment())) {
+          return dispatch(signOut())
+        } else {
+          return dispatch(signInUser()) //later change it to refresh token
+        }
+    }
 }
 
 function signInUserSuccess(auth) {
@@ -42,13 +70,13 @@ function signInUserRequest() {
   }
 }
 
-export function signInUser(login, password) {
+export function signInUser(email, password) {
     return function(dispatch) {
         dispatch(signInUserRequest())
         return fetch(`${baseUri}/auth/signin`, {
                 method: 'post',
                 headers: defaultHeaders,
-                body: JSON.stringify({ login: login, password: password })
+                body: JSON.stringify({ email: email, password: password })
             })
             .then(checkHttpStatus)
             .then(parseResponseJSON)
@@ -74,6 +102,29 @@ export function signInUser(login, password) {
     }
 }
 
+export function signOut(reasonError) {
+    return (dispatch, state) => {
+      dispatch({
+          type: SIGN_OUT_USER,
+          payload: {
+            reasonError
+          }
+      })
+
+      dispatch(clearUser())
+    }
+}
+
+
 function getSignInInitialData(tokenData, dispatch) {
   dispatch(getUserRequest(tokenData.userId))
+}
+
+export function syncAuth(auth) {
+  return {
+    type: SYNC_AUTH,
+    payload: {
+      auth
+    }
+  }
 }

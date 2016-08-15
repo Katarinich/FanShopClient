@@ -3,15 +3,17 @@ import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 
 import rootReducer from '../reducers'
+import { loadInitialState, persistChanges, bindStoreToStorageUpdates } from '../modules/persistence'
 
-export default function configureStore(initialState) {
+export default function configureStore() {
   const logger = createLogger()
+  const initialState = loadInitialState()
 
   const store = createStore(
     rootReducer,
     initialState,
     applyMiddleware(
-      thunkMiddleware, logger )
+      persistChanges, thunkMiddleware, logger )
     )
 
   if (module.hot) {
@@ -20,6 +22,8 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextRootReducer)
     })
   }
+
+  bindStoreToStorageUpdates(store)
 
   return store
 }
