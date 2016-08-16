@@ -33,7 +33,7 @@
 
     li:first-child span {
       color: #a7a7a7;
-      
+
       small {
         color: #a7a7a7;
         padding: 0 5px;
@@ -166,6 +166,10 @@
             .media {
               border-bottom: 1px solid rgba(0, 0, 0, 0.1);
               padding: 12px 0;
+
+              img {
+                width: 25%;
+              }
 
               .media-body h5 {
                 color: #ffffff;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Panel, Navbar, Nav, NavItem, Collapse } from 'react-bootstrap'
 
 import LightSection from '../../components/PublicLayout/LightSection'
 import SideBar from '../../components/PublicLayout/ShopPage/SideBar'

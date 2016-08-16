@@ -16,7 +16,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading } = this.props
+    const { isAuthenticated, userName, onSignIn, onSignOut, isAuthenticating, isProfileLoading, cart } = this.props
 
     return(
       <div className="header clearfix">
@@ -24,8 +24,10 @@ export default class Header extends Component {
           isAuthenticated={ isAuthenticated }
           userName={ userName }
           onSignIn={ onSignIn }
+          onSignOut={ onSignOut }
           isAuthenticating={ isAuthenticating }
-          isProfileLoading={ isProfileLoading } />
+          isProfileLoading={ isProfileLoading }
+          cart={ cart } />
         <NavBar />
       </div>
     )

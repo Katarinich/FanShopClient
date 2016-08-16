@@ -22,13 +22,38 @@ export default class TopBar extends Component {
     this.setState({ showSignUpModal: true })
   }
 
+  handleSignOut(){
+    this.props.onSignOut()
+  }
+
   componentWillReceiveProps(nextProps) {
     if(nextProps.isAuthenticated) this.setState({ showLoginModal: false, showSignUpModal: false })
   }
 
+  renderCartItems() {
+    const items = this.props.cart.items ? this.props.cart.items : []
+
+    return items.map( (item) => {
+      return(
+        <li>
+          <a href="javascript:void(0)">
+            <div className="media">
+              <img className="media-left media-object" src={ item.image_url } alt="cart-Image" />
+              <div className="media-body">
+                <h5 className="media-heading">{ item.name } <br /><span>1 X ${ item.price }</span></h5>
+              </div>
+            </div>
+          </a>
+        </li>
+      )
+    })
+  }
+
   render() {
+    const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading, cart } = this.props
+
     let close = () => this.setState({ showLoginModal: false, showSignUpModal: false })
-    const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading } = this.props
+    let totalCartSum = cart.items ? cart.items.reduce((total, item) => { return typeof total === "object" ? total.price + item.price : total + item.price} ) : 0
 
     return(
       <div className="topbar">
@@ -47,7 +72,10 @@ export default class TopBar extends Component {
               <ul className="list-inline pull-right">
 
                 <li>
-                  { isAuthenticated && !isProfileLoading ? <span> Hello, <a href="javascript:void(0)"> { userName } </a></span>
+                  { isAuthenticated && !isProfileLoading
+                    ? <span>
+                        Hello, <a href="javascript:void(0)"> { userName } </a>  <a title="Sign out" href="javascript:void(0)" onClick={ this.handleSignOut.bind(this) }><i className="fa fa-power-off"></i></a>
+                      </span>
                      : <span>
                          <a href="javascript:void(0)" onClick={ this.handleLoginClick.bind(this) } >Log in</a>
                          <small>or</small>
@@ -68,29 +96,10 @@ export default class TopBar extends Component {
                 </li>
 
                 <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-shopping-cart"></i>$0</a>
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-shopping-cart"></i>${ totalCartSum }</a>
                   <ul className="dropdown-menu dropdown-menu-right">
                     <li>Item(s) in your cart</li>
-                    <li>
-                      <a href="#">
-                        <div className="media">
-                          <img className="media-left media-object" src="/images/cart-item.png" alt="cart-Image" />
-                          <div className="media-body">
-                            <h5 className="media-heading">{'ITEM #1'} <br /><span>{'2 X $199'}</span></h5>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <div className="media">
-                          <img className="media-left media-object" src="/images/cart-item.png" alt="cart-Image" />
-                          <div className="media-body">
-                            <h5 className="media-heading">{'ITEM #2'} <br /><span>{'2 X $199'}</span></h5>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+                    { this.renderCartItems() }
                     <li>
                       <div className="btn-group" role="group" aria-label="...">
                         <button type="button" className="btn btn-default">Shopping Cart</button>

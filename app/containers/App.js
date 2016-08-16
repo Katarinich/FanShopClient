@@ -5,7 +5,7 @@ import Header from '../components/PublicLayout/Navigation/Header'
 import Footer from '../components/PublicLayout/Footer'
 import Banner from '../components/PublicLayout/HomePage/Banner'
 import Copyright from '../components/PublicLayout/Copyright'
-import { signInUser } from '../modules/auth'
+import { signInUser, signOut } from '../modules/auth'
 
 class App extends Component {
   render() {
@@ -15,8 +15,10 @@ class App extends Component {
           isAuthenticated={ this.props.isAuthenticated }
           userName={ this.props.user.data ? this.props.user.data.name : null }
           onSignIn={ this.props.signInUser }
+          onSignOut={ this.props.signOut }
           isAuthenticating={ this.props.isAuthenticating }
-          isProfileLoading={ this.props.isProfileLoading } />
+          isProfileLoading={ this.props.isProfileLoading }
+          cart={ this.props.cart } />
 
           { this.props.children }
         <Footer />
@@ -38,4 +40,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { signInUser })(App)
+export default connect(mapStateToProps, { signInUser, signOut })(App)

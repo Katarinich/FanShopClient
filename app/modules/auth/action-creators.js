@@ -4,6 +4,7 @@ import moment from 'moment'
 import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS, SYNC_AUTH, RESTORE_SIGNED_IN_USER_REQUEST, SIGN_OUT_USER } from './action-types'
 import { checkHttpStatus, parseResponseJSON } from '../../utils'
 import { getUserRequest, clearUser } from '../user'
+import { getCart, clearCart } from '../cart'
 
 const baseUri = 'http://private-517bbf-shop31.apiary-mock.com'
 
@@ -112,12 +113,14 @@ export function signOut(reasonError) {
       })
 
       dispatch(clearUser())
+      dispatch(clearCart())
     }
 }
 
 
 function getSignInInitialData(tokenData, dispatch) {
   dispatch(getUserRequest(tokenData.userId))
+  dispatch(getCart(tokenData.userId))
 }
 
 export function syncAuth(auth) {
