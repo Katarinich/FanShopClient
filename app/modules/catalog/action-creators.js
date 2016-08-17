@@ -1,5 +1,6 @@
 import { PRODUCTS_REQUEST, PRODUCTS_REQUEST_FAILURE, PRODUCTS_REQUEST_SUCCESS,
-         PRODUCT_INFO_REQUEST, PRODUCT_INFO_REQUEST_FAILURE, PRODUCT_INFO_REQUEST_SUCCESS } from './action-types'
+         PRODUCT_INFO_REQUEST, PRODUCT_INFO_REQUEST_FAILURE, PRODUCT_INFO_REQUEST_SUCCESS,
+         GET_CATEGORIES_REQUEST, GET_CATEGORIES_SUCCESS, GET_CATEGORIES_FAILURE } from './action-types'
 import { checkHttpStatus, parseResponseJSON } from '../../utils'
 
 const baseUri = 'http://private-517bbf-shop31.apiary-mock.com'
@@ -103,4 +104,53 @@ export function getProductInfo() {
             dispatch(productInfoRequestFailure(error))
           })
     }
+}
+
+function getCategoriesRequest() {
+  return {
+    type: GET_CATEGORIES_REQUEST
+  }
+}
+
+function getCategoriesSuccess(response) {
+  return {
+    type: GET_CATEGORIES_SUCCESS,
+    payload: {
+      response
+    }
+  }
+}
+
+function getCategoriesFailure(error) {
+  return {
+    type: GET_CATEGORIES_FAILURE,
+    error
+  }
+}
+
+export function getCategories() {
+  return (dispatch, getState)  => {
+    dispatch(getCategoriesRequest())
+
+    return fetch(`${baseUri}/catalog/categories`, {
+            method: 'get',
+            headers: defaultHeaders,
+            body: null
+        })
+        .then(checkHttpStatus)
+        .then(parseResponseJSON)
+        .then(response => {
+            try {
+              dispatch(getCategoriesSuccess(response))
+            } catch (e) {
+                dispatch(getCategoriesFailure({
+                  status: 403,
+                  statusText: 'Categories list request failed.'
+                }))
+            }
+        })
+        .catch(error => {
+          dispatch(getCategoriesFailure(error))
+        })
+  }
 }

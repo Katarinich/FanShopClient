@@ -6,8 +6,13 @@ import Footer from '../components/PublicLayout/Footer'
 import Banner from '../components/PublicLayout/HomePage/Banner'
 import Copyright from '../components/PublicLayout/Copyright'
 import { signInUser, signOut } from '../modules/auth'
+import { getCategories } from '../modules/catalog'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getCategories()
+  }
+
   render() {
     return(
       <div>
@@ -18,10 +23,11 @@ class App extends Component {
           onSignOut={ this.props.signOut }
           isAuthenticating={ this.props.isAuthenticating }
           isProfileLoading={ this.props.isProfileLoading }
-          cart={ this.props.cart } />
+          cart={ this.props.cart }
+          categories={ this.props.categories } />
 
           { this.props.children }
-        <Footer />
+        <Footer categories={ this.props.categories } />
         <Copyright />
       </div>
     )
@@ -35,9 +41,10 @@ function mapStateToProps(state) {
     isAuthenticated: auth.isAuthenticated ? auth.isAuthenticated : false,
     isAuthenticating: auth.isAuthenticating ? auth.isAuthenticating : false,
     isProfileLoading: state.user.isProfileLoading ? state.user.isProfileLoading : false,
+    categories: state.catalog.categories ? state.catalog.categories : [],
     user: state.user,
     cart: state.cart
   }
 }
 
-export default connect(mapStateToProps, { signInUser, signOut })(App)
+export default connect(mapStateToProps, { signInUser, signOut, getCategories })(App)

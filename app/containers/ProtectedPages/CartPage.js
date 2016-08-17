@@ -34,9 +34,7 @@ class CartPage extends Component {
       { name: 'Cart' }
     ]
 
-    let totalCartSum = cart.items ? cart.items.reduce((total, item) => {
-      return typeof total === "object" ? total.price + item.price : total + item.price
-    }) : 0
+    let totalCartSum = cart.items ? cart.items.reduce((total, item) => { return total + item.price }, 0) : 0
 
     return(
       <div>

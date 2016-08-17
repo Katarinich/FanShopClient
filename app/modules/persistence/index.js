@@ -20,8 +20,6 @@ export function loadInitialState() {
     auth: auth
   }
 
-  log('Initial state from persistance:', initialState)
-
   return initialState
 }
 
@@ -42,9 +40,6 @@ export function bindStoreToStorageUpdates(store) {
 }
 
 function flushStateChanges(prevState = {}, nextState = {}) {
-  log('State to be saved to local storage:', nextState)
-  log('prevState:', prevState)
-
   descriptors.forEach(descriptor => {
     const { stateKey, storageKey } = descriptor
 
@@ -55,7 +50,6 @@ function flushStateChanges(prevState = {}, nextState = {}) {
     const serializedNextStateValue = serialize(nextStateValue)
 
     if (serializedNextStateValue !== serializedPrevStateValue) {
-      log(`${stateKey} changed in redux state and will be saved to local storage as ${storageKey}`)
       saveRaw(storageKey, serializedNextStateValue)
     }
   })
@@ -63,23 +57,16 @@ function flushStateChanges(prevState = {}, nextState = {}) {
 
 function handleStorageUpdate(store) {
   return storageEvent => {
-    log(`event storage: ${storageEvent.key}`, storageEvent)
-
     descriptors.forEach(descriptor => {
       const { storageKey, syncActionCreator } = descriptor
 
-      log(`checking ${storageKey}...`)
-
       const updated = syncIfStorageEntryChanged(storageKey, storageEvent, store, syncActionCreator)
-
-      log(`${storageKey} was ${updated ? '' : "NOT"} updated`)
     })
   }
 }
 
 function syncIfStorageEntryChanged(key, storageEvent, store, syncActionCreator) {
-  if (!dataChanged(key, storageEvent))
-  {
+  if (!dataChanged(key, storageEvent)) {
     return false
   }
 
@@ -121,8 +108,4 @@ function load(key) {
 
 function loadRaw(key) {
   return localStorage.getItem(key)
-}
-
-function log() {
-  console.log(...arguments)
 }

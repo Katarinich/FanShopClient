@@ -11,7 +11,7 @@ export default (store) => {
   return (
     <Route path="/" component={ App }>
       <IndexRoute component={ HomePage } />
-      <Route path="shop/:category/:subcategory" >
+      <Route path="shop/:subcategory" >
         <IndexRoute component={ ShopPage } />
         <Route path=":productId" component={ SingleProductPage }/>
       </Route>

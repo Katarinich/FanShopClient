@@ -4,24 +4,31 @@ import { Panel, Collapse } from 'react-bootstrap'
 export default class SideBar extends Component {
   constructor(...args) {
     super(...args)
+    
+    this.state = { }
+  }
 
-    this.state = {}
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.currentCategoryId) {
+      const currentCategoryId = `category${this.props.currentCategoryId}`
+      this.setState({ [currentCategoryId]: true })
+    }
   }
 
   renderCategories() {
     return this.props.categories.map( (category, i) => {
-      const categoryId = 'category' + (i + 1)
+      const categoryId = 'category' + (category.id)
 
-      const subcategories = category.items.map( (subcategory) => {
+      const subcategories = category.subcategories.map( (subcategory) => {
         return(
-          <li><a href="javascript:;"><i className="fa fa-caret-right" aria-hidden="true"></i>{ subcategory.text }</a></li>
+          <li><a href="javascript:;"><i className="fa fa-caret-right" aria-hidden="true"></i>{ subcategory.name }</a></li>
         )
       })
 
       return(
         <li>
            <a href="javascript:;" onClick={ () => this.setState({ [categoryId]: !this.state[categoryId] })}>
-            { category.text } { this.state[categoryId] ? <i className="fa fa-minus"></i> : <i className="fa fa-plus"></i> }
+            { category.name } { this.state[categoryId] ? <i className="fa fa-minus"></i> : <i className="fa fa-plus"></i> }
            </a>
            <Collapse in={this.state[categoryId]}>
              <ul className="collapseItem">

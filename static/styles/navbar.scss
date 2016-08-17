@@ -49,6 +49,7 @@
 
     img {
       max-width: 100%;
+      padding-bottom: 10px;
     }
 }
 
@@ -397,7 +398,7 @@
 
 @media (min-width: 992px)  {
   .navbar-default .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu a.menu-photo img {
-    width: auto;
+    width: 60%;
   }
 }
 
@@ -415,6 +416,6 @@
 
 @media (min-width: 768px)  {
   .navbar-default .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu a.menu-photo {
-    padding: 26px 0 0 0!important;
+    padding: 26px 0 26px 0!important;
   }
 }

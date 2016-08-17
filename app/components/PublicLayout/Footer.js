@@ -4,15 +4,16 @@ import ShopItems from '../../constants/shopItems'
 
 export default class Footer extends Component {
   renderShopItems() {
-    return ShopItems.map((category, i) => {
-      const categoryItems = category.items.map(item => {
-        return <li><a href={ item.to }>{ item.text }</a></li>
+    return this.props.categories.map((category, i) => {
+      const categoryItems = category.subcategories.map((item, j) => {
+        const itemLink = `/shop/${item.id}`
+        return <li key={ i + j } ><a href={ itemLink }>{ item.name }</a></li>
       })
 
-      return (
-        <div className="col-sm-2 col-xs-12">
+      return(
+        <div key={ i } className="col-sm-2 col-xs-12">
           <div className="footerLink">
-            <h5>{ category.text }</h5>
+            <h5>{ category.name }</h5>
             <ul className="list-unstyled">
               { categoryItems }
             </ul>

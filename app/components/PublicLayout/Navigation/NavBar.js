@@ -3,7 +3,6 @@ import { Nav, Navbar, NavItem, MenuItem } from 'react-bootstrap'
 import { Link } from 'react-router'
 import activeComponent from 'react-router-active-component'
 
-import ShopItems from '../../../constants/shopItems'
 import { connectHistory } from '../../../utils'
 
 const NavItemLink = activeComponent('li')
@@ -18,15 +17,16 @@ const AccountItems = [
 
 class NavBar extends Component {
   renderShopItems() {
-    return ShopItems.map((category, i) => {
-      const categoryItems = category.items.map(item => {
-        return <NavItemLink to={ item.to }> { item.text }</NavItemLink>
+    return this.props.categories.map((category, i) => {
+      const categoryItems = category.subcategories.map((item, j) => {
+        const itemLink = `/shop/${item.id}`
+        return <NavItemLink to={ itemLink } key={ i + j }> { item.name }</NavItemLink>
       })
 
       return (
         <li key={ i } className="col-sm-3 col-xs-12">
           <ul className="list-unstyled">
-            <li>{ category.text }</li>
+            <li>{ category.name }</li>
             { categoryItems }
           </ul>
         </li>
@@ -36,13 +36,13 @@ class NavBar extends Component {
 
   renderAccountItems() {
     return AccountItems.map((item, i) => {
-      return <NavItemLink to={ item.to }>{ item.text }</NavItemLink>
+      return <NavItemLink key={ i } to={ item.to }>{ item.text }</NavItemLink>
     })
   }
 
   checkIfShopIsActive() {
-    const { context } = this.props
-    return ShopItems.some(item => item.items.some(subitem => context.router.isActive(subitem.to)))
+    const { context, categories } = this.props
+    return categories.some(item => item.subcategories.some(subitem => context.router.isActive(`/shop/${subitem.id}`)))
   }
 
   render() {
@@ -64,9 +64,9 @@ class NavBar extends Component {
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Shop</a>
               <ul className="dropdown-menu row">
                 <li className="col-sm-3 col-xs-12">
-                  <a href="#" className="menu-photo"><img src="/images/menu-photo.png" alt="menu-img" /></a>
+                  <a href="#" className="menu-photo"><img src="http://savepic.ru/10528473.jpg" alt="menu-img" /></a>
                 </li>
-                
+
                 { this.renderShopItems() }
               </ul>
             </li>

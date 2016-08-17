@@ -33,9 +33,9 @@ export default class TopBar extends Component {
   renderCartItems() {
     const items = this.props.cart.items ? this.props.cart.items : []
 
-    return items.map( (item) => {
+    return items.map( (item, i) => {
       return(
-        <li>
+        <li key={ i }>
           <a href="javascript:void(0)">
             <div className="media">
               <img className="media-left media-object" src={ item.image_url } alt="cart-Image" />
@@ -53,7 +53,7 @@ export default class TopBar extends Component {
     const { isAuthenticated, userName, onSignIn, isAuthenticating, isProfileLoading, cart } = this.props
 
     let close = () => this.setState({ showLoginModal: false, showSignUpModal: false })
-    let totalCartSum = cart.items ? cart.items.reduce((total, item) => { return typeof total === "object" ? total.price + item.price : total + item.price} ) : 0
+    let totalCartSum = cart.items ? cart.items.reduce((total, item) => { return total + item.price }, 0) : 0
 
     return(
       <div className="topbar">
