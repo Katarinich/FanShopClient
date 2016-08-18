@@ -12,6 +12,7 @@ import ProfilePage from './containers/ProtectedPages/AccountPages/ProfilePage'
 import MyAddressPage from './containers/ProtectedPages/AccountPages/MyAddressPage'
 import WishlistPage from './containers/ProtectedPages/AccountPages/WishlistPage'
 import OrdersPage from './containers/ProtectedPages/AccountPages/OrdersPage'
+import LoginPage from './containers/PublicPages/LoginPage'
 
 export default (store) => {
   const requireAuth = (nextState, replace, callback) => {
@@ -40,6 +41,7 @@ export default (store) => {
         <Route path="wishlist" component={ WishlistPage } />
         <Route path="orders" component={ OrdersPage } />
       </Route>
+      <Route path="login" component={ LoginPage } />
     </Route>
   )
 }

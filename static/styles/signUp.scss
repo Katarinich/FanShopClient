@@ -1,0 +1,106 @@
+.signUp .panel {
+  border-radius: 0;
+  border: none;
+
+  .panel-heading {
+    background-color: #47bac1;
+    border-radius: 0;
+    padding: 0 15px;
+    height: 60px;
+
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 60px;
+    }
+  }
+
+  .panel-body {
+    padding: 15px 30px;
+    border: 5px solid #f0f0f0;
+    border-top: none;
+
+    .form-group {
+      margin-bottom: 30px;
+
+      .form-control {
+        border-radius: 0;
+        background-color: #f0f0f0;
+        border: none;
+        height: 50px;
+        box-shadow: none;
+      }
+
+      .form-control:focus {
+        box-shadow: none;
+      }
+
+      label {
+        font-size: 13px;
+      }
+    }
+
+    .checkbox {
+      margin: 0 0 30px 0;
+
+      label {
+        font-size: 13px;
+      }
+    }
+
+    .btn-primary {
+      border-radius: 0;
+      background-color: #47bac1;
+      border: none;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 0;
+      height: 50px;
+      line-height: 50px;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      opacity: .9;
+    }
+
+    .btn-link {
+      color: #47bac1;
+      text-transform: capitalize;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+
+      span {
+        color: #797979;
+      }
+    }
+
+    .btn-link:hover {
+      text-decoration: none;
+      color: #4dc8cf;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .signUp {
+    padding: 45px 0 25px 0;
+  }
+}
+
+@media (min-width: 480px) {
+  .signUp {
+    padding: 90px 0 70px 0;
+  }
+}

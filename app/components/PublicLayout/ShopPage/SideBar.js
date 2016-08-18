@@ -4,8 +4,9 @@ import { Panel, Collapse } from 'react-bootstrap'
 export default class SideBar extends Component {
   constructor(...args) {
     super(...args)
-    
-    this.state = { }
+
+    const currentCategoryId = `category${this.props.currentCategoryId}`
+    this.state = { [currentCategoryId]: true }
   }
 
   componentWillReceiveProps(nextProps) {
