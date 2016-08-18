@@ -5,6 +5,7 @@ import { SIGN_IN_USER_REQUEST, SIGN_IN_USER_FAILURE, SIGN_IN_USER_SUCCESS, SYNC_
 import { checkHttpStatus, parseResponseJSON } from '../../utils'
 import { getUserRequest, clearUser } from '../user'
 import { getCart, clearCart } from '../cart'
+import { getOrders, clearOrders } from '../orders'
 
 const baseUri = 'http://private-517bbf-shop31.apiary-mock.com'
 
@@ -114,6 +115,7 @@ export function signOut(reasonError) {
 
       dispatch(clearUser())
       dispatch(clearCart())
+      dispatch(clearOrders())
     }
 }
 
@@ -121,6 +123,7 @@ export function signOut(reasonError) {
 function getSignInInitialData(tokenData, dispatch) {
   dispatch(getUserRequest(tokenData.userId))
   dispatch(getCart(tokenData.userId))
+  dispatch(getOrders(tokenData.userId))
 }
 
 export function syncAuth(auth) {

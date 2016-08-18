@@ -1,0 +1,93 @@
+.profile {
+  .thumbnail {
+    .caption {
+      .btn-primary {
+        padding: 0;
+        line-height: 45px;
+        height: 45px;
+        font-weight: 700;
+        color: #ffffff;
+        font-size: 15px;
+        border-radius: 0;
+        background-color: #47bac1;
+        border: none;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn-primary:hover {
+        opacity: .8;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .orderBox {
+    margin-bottom: 30px;
+  }
+
+  .form-horizontal .form-group {
+    .btn-primary {
+      height: 45px;
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 15px;
+      border-radius: 0;
+      background-color: #47bac1;
+      border: none;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      opacity: .8;
+    }
+
+    .form-control {
+      border-radius: 0;
+      background-color: #f0f0f0;
+      border: none;
+      height: 50px;
+      box-shadow: none;
+    }
+
+    .control-label {
+      padding-top: 0;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .profile .form-horizontal .form-group {
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile .form-horizontal .form-group {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 480px) {
+  .profile .form-horizontal .form-group .control-label {
+    height: 25px;
+    line-height: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile .form-horizontal .form-group .control-label {
+    height: 50px;
+    line-height: 50px;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
 
 import ModalWindow from '../Modal'
 import LoginForm from '../LoginForm'
@@ -22,8 +23,12 @@ export default class TopBar extends Component {
     this.setState({ showSignUpModal: true })
   }
 
-  handleSignOut(){
+  handleSignOut() {
     this.props.onSignOut()
+  }
+
+  handleCartClick() {
+    browserHistory.push('/cart')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -102,7 +107,7 @@ export default class TopBar extends Component {
                     { this.renderCartItems() }
                     <li>
                       <div className="btn-group" role="group" aria-label="...">
-                        <button type="button" className="btn btn-default">Shopping Cart</button>
+                        <button type="button" className="btn btn-default" onClick={ this.handleCartClick.bind(this) }>Shopping Cart</button>
                         <button type="button" className="btn btn-default">Checkout</button>
                       </div>
                     </li>

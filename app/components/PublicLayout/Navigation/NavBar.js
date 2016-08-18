@@ -8,11 +8,11 @@ import { connectHistory } from '../../../utils'
 const NavItemLink = activeComponent('li')
 
 const AccountItems = [
-  { text: 'Dashboard', to: '/' },
-  { text: 'Profile', to: '/' },
-  { text: 'All Orders', to: '/' },
-  { text: 'Wishlist', to: '/' },
-  { text: 'Address', 'to': '/' }
+  { text: 'Dashboard', to: '/account/dashboard' },
+  { text: 'Profile', to: '/account/profile' },
+  { text: 'All Orders', to: '/account/orders' },
+  { text: 'Wishlist', to: '/account/wishlist' },
+  { text: 'Address', 'to': '/account/address' }
 ]
 
 class NavBar extends Component {
@@ -36,8 +36,13 @@ class NavBar extends Component {
 
   renderAccountItems() {
     return AccountItems.map((item, i) => {
-      return <NavItemLink key={ i } to={ item.to }>{ item.text }</NavItemLink>
+      return <NavItemLink activeClassName="nav-dropdown-active-item" key={ i } to={ item.to }>{ item.text }</NavItemLink>
     })
+  }
+
+  checkIfAccountIsActive() {
+    const { context } = this.props
+    return AccountItems.some(item => context.router.isActive(item.to))
   }
 
   checkIfShopIsActive() {
@@ -47,7 +52,9 @@ class NavBar extends Component {
 
   render() {
     const shopsActive = this.checkIfShopIsActive()
-    const className = shopsActive ? "active" : null
+    const accountActive= this.checkIfAccountIsActive()
+    const shopClassName = shopsActive ? "active" : null
+    const accountClassName = accountActive ? 'active' : null
 
     return(
       <Navbar>
@@ -60,7 +67,7 @@ class NavBar extends Component {
 
             <NavItemLink to="/" onlyActiveOnIndex>Home</NavItemLink>
 
-            <li className={`dropdown megaDropMenu ${className}`}>
+            <li className={`dropdown megaDropMenu ${shopClassName}`}>
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">Shop</a>
               <ul className="dropdown-menu row">
                 <li className="col-sm-3 col-xs-12">
@@ -71,7 +78,7 @@ class NavBar extends Component {
               </ul>
             </li>
 
-            <li className="dropdown">
+            <li className={`dropdown ${accountClassName}`}>
               <a href="javascript:void(0)" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
               <ul className="dropdown-menu dropdown-menu-right">
                 { this.renderAccountItems() }
